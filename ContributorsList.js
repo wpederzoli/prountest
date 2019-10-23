@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Image, View, ScrollView, Text, TouchableOpacity } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 class ContributorsList extends Component {
     state = {
@@ -7,19 +8,25 @@ class ContributorsList extends Component {
     }
 
     componentDidMount(){
-        fetch("https://api.github.com/repos/emberjs/core-notes/contributors", {
-            method: 'GET'})
-            .then(response => response.json())
-            .then(json => this.setState({
-                data: json
-            })).catch(error => console.error(error));
+       this.getData(); 
     }
+
+    getData = async () => {
+        try {
+          const value = await AsyncStorage.getItem("contributors")
+          if(value !== null) {
+            this.setState({ data: JSON.parse(value)});
+          }
+        } catch(e) {
+            console.log("Can't get values, " , e)
+        }
+      }
 
     render(){
         return(
             <View style={{ marginTop: 10, marginBottom: 10, flex: 1 }}>
                 <ScrollView style={{ marginHorizontal: 20, flex: 1 }}>
-                    { this.state.data.map(data =>
+                    { this.state.data.length > 0 ? this.state.data.map(data =>
                         <View key={data.id} style={{ borderWidth: 2, borderColor: 'lightblue', marginTop: 5 }}>
                             <TouchableOpacity>
                                 <View style={{ flexDirection: 'row' }}>
@@ -28,7 +35,8 @@ class ContributorsList extends Component {
                                 </View>
                             </TouchableOpacity>
                         </View>
-                    )}
+                        ) : null
+                    }
                 </ScrollView>
             </View>
         );
