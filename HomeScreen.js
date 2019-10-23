@@ -21,15 +21,11 @@ class HomeScreen extends Component{
         console.log("something went wrong", error)
       }
     }
-
-    onPress = () => {
-        this.props.navigation.navigate('Profile');
-    }
   
     render(){
       return(
         <View style={{ flex: 1 }}>
-          <ContributorsList onPress={this.onPress} />
+          <ContributorsList navigate={this.props.navigation.navigate} />
         </View>
       );
     }

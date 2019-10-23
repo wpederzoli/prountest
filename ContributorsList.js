@@ -22,13 +22,14 @@ class ContributorsList extends Component {
         }
       }
 
+
     render(){
         return(
             <View style={{ marginTop: 10, marginBottom: 10, flex: 1 }}>
                 <ScrollView style={{ marginHorizontal: 20, flex: 1 }}>
                     { this.state.data.length > 0 ? this.state.data.map(data =>
                         <View key={data.id} style={{ borderWidth: 2, borderColor: 'lightblue', marginTop: 5 }}>
-                            <TouchableOpacity onPress={() => this.props.onPress()}>
+                            <TouchableOpacity onPress={() => this.props.navigate('Profile', { url: data.url })}>
                                 <View style={{ flexDirection: 'row' }}>
                                     <Image source={{ uri: data.avatar_url }} style={{ width: 50, height: 50, flex: 1 }} />
                                     <Text style={{ fontSize: 20, alignSelf: 'center', justifyContent: 'center', flex: 3, textAlign: 'center' }}>{data.login}</Text>
@@ -36,7 +37,7 @@ class ContributorsList extends Component {
                             </TouchableOpacity>
                         </View>
                         ) : 
-                        <Text>No contributors yet</Text> 
+                        <Text>Loading...</Text> 
                     }
                 </ScrollView>
             </View>
