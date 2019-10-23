@@ -35,7 +35,8 @@ class ContributorsList extends Component {
                                 </View>
                             </TouchableOpacity>
                         </View>
-                        ) : null
+                        ) : 
+                        <Text>No contributors yet</Text> 
                     }
                 </ScrollView>
             </View>
