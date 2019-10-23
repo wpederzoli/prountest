@@ -18,7 +18,7 @@ class ContributorsList extends Component {
             this.setState({ data: JSON.parse(value)});
           }
         } catch(e) {
-            console.log("Can't get values, " , e)
+            console.log("Can't get values, ", e)
         }
       }
 
@@ -28,7 +28,7 @@ class ContributorsList extends Component {
                 <ScrollView style={{ marginHorizontal: 20, flex: 1 }}>
                     { this.state.data.length > 0 ? this.state.data.map(data =>
                         <View key={data.id} style={{ borderWidth: 2, borderColor: 'lightblue', marginTop: 5 }}>
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={() => this.props.onPress()}>
                                 <View style={{ flexDirection: 'row' }}>
                                     <Image source={{ uri: data.avatar_url }} style={{ width: 50, height: 50, flex: 1 }} />
                                     <Text style={{ fontSize: 20, alignSelf: 'center', justifyContent: 'center', flex: 3, textAlign: 'center' }}>{data.login}</Text>

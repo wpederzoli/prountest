@@ -3,6 +3,7 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
 import HomeScreen from './HomeScreen';
+import ContributorProfile from './ContributorProfile';
 
 const MainNavigator = createStackNavigator({
   Home: 
@@ -10,6 +11,22 @@ const MainNavigator = createStackNavigator({
       screen: HomeScreen,
       navigationOptions: { 
         title: 'Contribuidores Ember.js',
+        headerStyle: {
+          backgroundColor: 'lightblue'
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle:{
+          fontWeight: 'bold',
+          textAlign: 'center',
+          flex: 1
+        },
+      }
+    },
+  Profile:
+    {
+      screen: ContributorProfile,
+      navigationOptions: { 
+        title: 'Perfil de Contribuidor',
         headerStyle: {
           backgroundColor: 'lightblue'
         },
